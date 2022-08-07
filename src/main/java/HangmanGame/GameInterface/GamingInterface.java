@@ -103,7 +103,7 @@ public class GamingInterface extends JFrame {
 		
 		// MASKED WORD MONITORING LABEL 
 		textFieldWord = new JTextField();
-		textFieldWord.setForeground(Color.BLACK);
+		textFieldWord.setForeground(Color.RED);
 		textFieldWord.setBackground(Color.DARK_GRAY);
 		textFieldWord.setEditable(false);
 		textFieldWord.setBounds(10, 10, 267, 26);
