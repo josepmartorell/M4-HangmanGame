@@ -38,6 +38,7 @@ public class GamingInterface extends JFrame {
 	public JLabel label_bulb_5;
 	public JLabel lblFailures;
 	public ButtonGroup keyboard;
+	public JButton btn_hint;
 
 	/**
 	 * Create the frame.
@@ -83,10 +84,11 @@ public class GamingInterface extends JFrame {
 		btn_start.setActionCommand("START GAME");
 		panel.add(btn_start);
 		
-		JButton btn_hint = new JButton("HINT");
+		btn_hint = new JButton("HINT");
 		btn_hint.setBounds(10, 68, 287, 35);
 		btn_hint.addActionListener(eventManager);
 		btn_hint.setActionCommand("HINT");
+		btn_hint.setEnabled(false);
 		panel.add(btn_hint);
 		
 		JPanel panel_1 = new JPanel();
@@ -145,6 +147,7 @@ public class GamingInterface extends JFrame {
 		lblFailures.setFont(new Font("Comic Sans MS", Font.BOLD, 10));
 		lblFailures.setForeground(Color.DARK_GRAY);
 		lblFailures.setBounds(220, 34, 77, 13);
+		lblFailures.setVisible(false);
 		panel_1.add(lblFailures);
 		
 		// KEYBOARD ELEMENTS GROUP
@@ -360,7 +363,7 @@ public class GamingInterface extends JFrame {
 		
 		label_gallowns_pole = new JLabel("gallowns pole");
 		label_gallowns_pole.setBounds(10, 10, 477, 500);
-		label_gallowns_pole.setIcon(new ImageIcon(ImageIO.read(new FileInputStream("resources/hangman1.jpg"))));
+		label_gallowns_pole.setIcon(new ImageIcon(ImageIO.read(new FileInputStream("resources/hangman0.jpg"))));
 		panel_4.add(label_gallowns_pole);
 	}
 }
