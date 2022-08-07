@@ -127,6 +127,7 @@ public class EventManager implements ActionListener{
 		for (int j = 0; j < letters.length; j++) {
 			if(letters[j].equals(letter)) {
 				mask.set(index, letter);
+				deactivateKey(letter);
 				gate = false;
 				hits++;
 			}
@@ -176,6 +177,20 @@ public class EventManager implements ActionListener{
 		}
 		
 	}
+	
+	//DEACTIVATE SUCCESS KEY 
+	public void deactivateKey(String letter) {
+		for (Enumeration<AbstractButton> buttons = gamingInterface.keyboard.getElements(); buttons.hasMoreElements();) {
+            AbstractButton button = buttons.nextElement();
+
+            if (button.getText().equals(letter)) {
+            	button.setEnabled(false);
+            }
+        }
+		
+	}
+
+	
 		
 };
 	
