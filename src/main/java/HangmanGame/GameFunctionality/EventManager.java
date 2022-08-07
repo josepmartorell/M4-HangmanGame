@@ -36,13 +36,13 @@ public class EventManager implements ActionListener{
 			//SPECIFIC EVENT SOURCE BUTTON FROM BUTTONGROUP EVENT
 		}else if(e.getActionCommand().equals("letter")) {
 			JButton letter = (JButton) e.getSource();			
-			//MONITORING THE LETTERS OF THE SECRET WORD COMPARING THEM WITH THE USER'S PASSWORD	
+			//MONITORING THE LETTERS OF THE HIDDEN WORD COMPARING THEM WITH THE USER'S ONE	
 			for (String string : letters) {
 				System.out.println("SECRET: "+string+" USER KEY: "+letter.getText());			
 			}			
-			// TODO
-			String str = String.valueOf(mask);
-			gamingInterface.textFieldWord.setText(str.replace("[", "").replace("]", ""));
+			// TODO external method
+			checkKey(letter.getText(), mask);
+
 			
 		}else if(e.getActionCommand().equals("About")) {
 			JOptionPane.showMessageDialog(gamingInterface,  "THE HANGMAN GAME (PREMIUM VERSION)\n"
@@ -72,11 +72,14 @@ public class EventManager implements ActionListener{
 		for (String string : letters) {//MONITORING
 			System.out.println(string);
 		}
+		//MASK THE HIDDEN WORD
 		for (int i = 0; i < secretWord.length(); i++) {
-			mask.add("_");
+			mask.add("*");
 		}
+		//A WAY TO CONVERT AN ARRAY INTO A STRING
 		String str = String.valueOf(mask);
-		gamingInterface.textFieldWord.setText(str.replace("[", "").replace("]", ""));
+		//SAMPLE PER SCREEN
+		gamingInterface.textFieldWord.setText(str.replace("[", "").replace("]", "").replace(",",""));
 		//ACTIVATE KEYBOARD 
 		for (Enumeration<AbstractButton> buttons = gamingInterface.keyboard.getElements(); buttons.hasMoreElements();) {
             AbstractButton button = buttons.nextElement();
@@ -85,6 +88,22 @@ public class EventManager implements ActionListener{
 
 
 	};
+	
+	public void checkKey(String letter, ArrayList<String> mask) {
+		int index = 0;
+		for (int j = 0; j < letters.length; j++) {
+			if(letters[j].equals(letter)) {
+				mask.set(index, letter);
+			}else{
+				mask.set(index, "*");
+			};
+			index++;
+		}
+		String str = String.valueOf(mask);
+		gamingInterface.textFieldWord.setText(str.replace("[", "").replace("]", "").replace(",", ""));
+		System.out.println(str);
+		
+	}
 	
 			
 }
