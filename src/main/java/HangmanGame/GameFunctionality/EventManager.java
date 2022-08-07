@@ -162,8 +162,19 @@ public class EventManager implements ActionListener{
 			gamingInterface.textFieldWord.setText("");
 
 		}else if(hits == letters.length){
+			//SET KEYBOARD DEACTIVATED
+			for (Enumeration<AbstractButton> buttons = gamingInterface.keyboard.getElements(); buttons.hasMoreElements();) {
+	            AbstractButton button = buttons.nextElement();
+	            button.setEnabled(false);
+	        }
+			//DEACTIVATE HINT BUTTON
+			gamingInterface.btn_hint.setEnabled(false);
+			//GAME OVER 
 			JOptionPane.showMessageDialog(gamingInterface,"YOU'VE WIN DE GAME :) "+"\nFailed: "+pole, "GAME OVER", JOptionPane.YES_NO_OPTION);
+			//CLEAN WORD DISPLAYER
+			gamingInterface.textFieldWord.setText("");
 		}
+		
 	}
 		
 };

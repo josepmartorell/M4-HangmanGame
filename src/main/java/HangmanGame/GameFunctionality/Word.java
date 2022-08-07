@@ -8,7 +8,7 @@ public class Word {
 	
 	//RANDOM SECRET WORD CONSTRUCTOR
 	public Word() {
-		this.secret = randomWord[(int)(Math.random()*(randomWord.length-0+1)+0)];
+		this.secret = randomWord[(int)Math.floor(Math.random()*9)];
 
 	}
     //GETTER
