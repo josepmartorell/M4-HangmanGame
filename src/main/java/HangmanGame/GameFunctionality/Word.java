@@ -4,7 +4,7 @@ public class Word {
 	
 	private String randomWord[] = {"TORO", "GEMA", "GOMA", "PISO", "RABO", "TIMO", "RETO", "COCO", "MESA", "COPA"};
 	private String secret;
-	private String arrayWord[];
+	private String arrayWord[] = {"A","B","C","D","E","F","G","H","I","J","K","L","M","N","Ñ","O","P","Q","R","S","T","U","V","W","X","Y","Z"};
 	
 	//RANDOM SECRET WORD CONSTRUCTOR
 	public Word() {

@@ -12,6 +12,7 @@ import javax.imageio.ImageIO;
 import javax.swing.AbstractButton;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 
 import HangmanGame.GameInterface.GamingInterface;
@@ -26,6 +27,7 @@ public class EventManager implements ActionListener{
     
     int pole;
     int hits;
+    int hints = 0;
 
 	public EventManager(GamingInterface gameingInterface) {		
 		//INTERFACE INSTANCE
@@ -66,8 +68,11 @@ public class EventManager implements ActionListener{
 				e1.printStackTrace();
 			}
 
-			
-		}else if(e.getActionCommand().equals("About")) {
+		//ON CLICK HINT BUTTON SELECT RANDOM UNSELECTED LETTER TO DEACTIVATE KEY	
+		}else if(e.getActionCommand().equals("HINT")) {
+			spendHint();
+		}
+		else if(e.getActionCommand().equals("About")) {
 			JOptionPane.showMessageDialog(gamingInterface,  "THE HANGMAN GAME (PREMIUM VERSION)\n"
 					+ "\nCreators:"
 					+ "\n -> Felipe Gomez\n"
@@ -127,12 +132,12 @@ public class EventManager implements ActionListener{
 		for (int j = 0; j < letters.length; j++) {
 			if(letters[j].equals(letter)) {
 				mask.set(index, letter);
-				deactivateKey(letter);
 				gate = false;
 				hits++;
 			}
 			index++;
 		}
+		deactivateKey(letter);
 		String str = String.valueOf(mask);
 		gamingInterface.textFieldWord.setText(str.replace("[", "").replace("]", "").replace(",", ""));
 		System.out.println(str);
@@ -189,6 +194,29 @@ public class EventManager implements ActionListener{
         }
 		
 	}
+	
+	//USE HINT
+	public void spendHint() {
+		Object[]bulbs = {
+		gamingInterface.label_bulb_5,
+		gamingInterface.label_bulb_4,
+		gamingInterface.label_bulb_3,
+		gamingInterface.label_bulb_2,
+		gamingInterface.label_bulb_1};
+		String[] arrayKey = word.getArrayWord();
+		String key = arrayKey[(int)Math.floor(Math.random()*9)];
+		for (Enumeration<AbstractButton> buttons = gamingInterface.keyboard.getElements(); buttons.hasMoreElements();) {
+            AbstractButton button = buttons.nextElement();
+            if((hints>=0) && (hints<5)) {
+                if ((button.getText().equals(key)) && (button.isEnabled())) {               	
+                	button.setEnabled(false);
+                	((JComponent) bulbs[hints++]).setVisible(false);
+                	JOptionPane.showMessageDialog(null, "HINT: The word not contains "+key);
+                }
+            }
+        }
+		
+	};
 
 	
 		
