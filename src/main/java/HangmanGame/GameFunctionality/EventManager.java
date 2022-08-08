@@ -27,7 +27,7 @@ public class EventManager implements ActionListener{
     
     int pole;
     int hits;
-    int hints = 0;
+    int hints;
 
 	public EventManager(GamingInterface gameingInterface) {		
 		//INTERFACE INSTANCE
@@ -90,6 +90,8 @@ public class EventManager implements ActionListener{
 		//RESTORE GALLOWNS POLE
 		gamingInterface.label_gallowns_pole.setIcon(new ImageIcon(ImageIO.read(new FileInputStream("resources/hangman0.jpg"))));
 		pole = 0;
+		hits = 0;
+		hints = 0;
 		//SHOW BULBS
 		gamingInterface.label_bulb_1.setVisible(true);
 		gamingInterface.label_bulb_2.setVisible(true);
